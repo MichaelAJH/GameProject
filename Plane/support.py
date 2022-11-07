@@ -1,11 +1,17 @@
 from os import walk
 import pygame
 
-def import_image(path, scale = False):
-    if scale:
-        return pygame.transform.scale(pygame.image.load(path), scale)
+def import_image(path, scale = False, rotation = False):
+    if not rotation:
+        if scale:
+            return pygame.transform.scale(pygame.image.load(path), scale)
+        else:
+            return pygame.image.load(path)
     else:
-        return pygame.image.load(path)
+        if scale:
+            return pygame.transform.rotate(pygame.transform.scale(pygame.image.load(path), scale), rotation)
+        else:
+            return pygame.transform.rotate(pygame.image.load(path), rotation)
 
 def import_folder(path):
     surface_list = []
