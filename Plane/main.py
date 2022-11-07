@@ -1,23 +1,26 @@
-# 1- import module
-import pygame
-import random
+import pygame, sys
+from support import import_image
+from plane import Plane
 
-# 2- reset game variables
-    # 2.1- game screen
 pygame.init()
-screen = pygame.display.set_mode((960, 640))
-    # 2.2- time variables
+screen = pygame.display.set_mode((1040, 640))
 FPS = 30
 fpsClock = pygame.time.Clock()
-    # 2.3 image variables
-def load_image(path, width = False, height = False):
-    if width and height:
-        return pygame.transform.scale(pygame.image.load(path), (width, height))
-    else:
-        return pygame.image.load(path)
-plane = load_image('Images\plane.png')
-cloud = load_image('Images\cloud.png')
-sky = load_image('Images\\background.png', 960, 640)
-# bird = 
-    # 2.4 movement variables
-g = 
+plane = Plane((100, 100), screen, (80, 40))
+group = pygame.sprite.Group()
+group.add(plane)
+sky = import_image('Plane\Images\\background.png', (1040, 640))
+
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+    screen.blit(sky, (0,0))
+    plane.apply_gravity()
+    plane.update()
+    group.draw(screen)
+
+    pygame.display.flip()
+    fpsClock.tick(FPS)
