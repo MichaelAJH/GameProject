@@ -1,4 +1,4 @@
-import pygame, math, random
+import pygame, math
 from support import import_folder
 from mechanisms import move_out
 
@@ -13,9 +13,9 @@ class Bird(pygame.sprite.Sprite):
         self.display_surface = surface
     
     def import_character_assets(self):
-        character_path = 'Plane\Images\\birds'
+        character_path = 'Images\\bird'
         self.animations = import_folder(character_path)
-        print(self.animations)
+        # print(self.animations)
 
     def animate(self, speed):
         self.animation_speed =speed
