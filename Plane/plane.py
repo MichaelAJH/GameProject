@@ -9,8 +9,8 @@ class Plane(pygame.sprite.Sprite):
         self.display_surface = surface
 
         self.direction = [0,0]
-        self.jump_speed = -7
-        self.gravity = 0.6
+        self.jump_speed = -4
+        self.gravity = 0.3
 
     def get_input(self):
         keys = pygame.key.get_pressed()
