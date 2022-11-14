@@ -1,9 +1,8 @@
 import pygame, sys, random
-from support import import_image
+from support import import_image, collide
 from plane import Plane
 from bird import Bird
 from cloud import Cloud
-from mechanisms import collide
 
 pygame.init()
 screen = pygame.display.set_mode((1040, 640))

@@ -1,6 +1,5 @@
 import pygame, math
-from support import import_folder
-from mechanisms import move_out
+from support import import_folder, move_out
 
 class Bird(pygame.sprite.Sprite):
     def __init__(self, pos, surface):

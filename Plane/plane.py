@@ -1,11 +1,9 @@
 import pygame, sys
-from support import import_image
-from mechanisms import move_out
+from support import import_image, move_out
 
 class Plane(pygame.sprite.Sprite):
     def __init__(self, pos, surface, scale = False):
         super().__init__()
-        self.scale = scale
         self.image = import_image('Images\plane.png', scale)
         self.rect = self.image.get_rect(topleft = pos)
         self.display_surface = surface
