@@ -1,0 +1,22 @@
+<player_data>
+  <player name="Michael">
+    <password value="test_ps" />
+  <games>
+      <game index="1" score="40" />
+    </games>
+  </player>
+<player name="David">
+    <password value="test_2" />
+  <games>
+      <game index="1" score="43" />
+    </games>
+  </player>
+<winners>
+    </winners>
+<player name="Josh">
+    <password value="test_3" />
+  </player>
+<player name="Clark">
+    <password value="S" />
+  </player>
+</player_data>

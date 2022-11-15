@@ -1,5 +1,6 @@
 import pygame, sys
-from player_log import sign_in, log_in
+# from player_log import sign_in, log_in
+from logger_xml import log_in, sign_in
 from support import import_image
 from control import Button, Input
 
