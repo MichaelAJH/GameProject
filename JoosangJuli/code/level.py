@@ -1,9 +1,9 @@
 import pygame 
 from tiles import Tile 
-from settings import tile_size, screen_width
+from settings import tile_size, screen_width, screen_height
 from player import Player
 from particles import ParticleEffect
-from lava import Lava
+from wave import Wave
 
 class Level:
 	def __init__(self,level_data,surface):
@@ -17,10 +17,6 @@ class Level:
 		# dust 
 		self.dust_sprite = pygame.sprite.GroupSingle()
 		self.player_on_ground = False
-  
-		# lava
-		self.lava_sprite = pygame.sprite.GroupSingle()
-		self.lava_sprite.add(Lava((surface.get_width(), surface.get_height())))
   
 
 	def create_jump_particles(self,pos):
@@ -61,6 +57,18 @@ class Level:
 				if cell == 'P':
 					player_sprite = Player((x,y),self.display_surface,self.create_jump_particles)
 					self.player.add(player_sprite)
+     
+	def reload_level(self,layout):
+		self.tiles = pygame.sprite.Group()
+
+		for row_index,row in enumerate(layout):
+			for col_index,cell in enumerate(row):
+				x = col_index * tile_size
+				y = row_index * tile_size
+				
+				if cell == 'X':
+					tile = Tile((x,y),tile_size)
+					self.tiles.add(tile)
 
 	def scroll_x(self):
 		player = self.player.sprite
@@ -118,10 +126,12 @@ class Level:
 			player.on_ceiling = False
 
 	def run(self, time):
+		
   
 		# dust particles 
 		self.dust_sprite.update(self.world_shift)
 		self.dust_sprite.draw(self.display_surface)
+		
 
 		# level tiles
 		self.tiles.update(self.world_shift, time)

@@ -10,6 +10,6 @@ class Tile(pygame.sprite.Sprite):
 		self.rect = self.image.get_rect(topleft = pos)
 
 	def update(self,x_shift, time):
-		if(time>self.life*10):
+		if(time>self.life*5+3000):
 			self.rect.y += 2
 		self.rect.x += x_shift

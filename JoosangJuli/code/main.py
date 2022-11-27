@@ -18,6 +18,6 @@ while True:
 	
 	screen.blit(sky, (0,0))
 	level.run(pygame.time.get_ticks())
-	print(screen.get_height())
+
 	pygame.display.update()
 	clock.tick(60)
