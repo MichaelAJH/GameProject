@@ -8,6 +8,7 @@ class Player(pygame.sprite.Sprite):
 		self.frame_index = 0
 		self.animation_speed = 0.15
 		self.image = self.animations['idle'][self.frame_index]
+		self.image = pygame.transform.scale(self.image, (100,100))
 		self.rect = self.image.get_rect(topleft = pos)
 		
 		# dust particles 
@@ -53,9 +54,13 @@ class Player(pygame.sprite.Sprite):
 		image = animation[int(self.frame_index)]
 		if self.facing_right:
 			self.image = image
+			self.image = pygame.transform.scale(self.image, (100,100))
+   
 		else:
 			flipped_image = pygame.transform.flip(image,True,False)
 			self.image = flipped_image
+			self.image = pygame.transform.scale(self.image, (100,100))
+
 
 		# set the rect
 		if self.on_ground and self.on_right:
