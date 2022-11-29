@@ -32,7 +32,7 @@ while True:
 		leftTime = (3-int(stateTimer/100))
 		middleText = fontWithSize(50).render(f'{leftTime}', True, 'white')
 		stateTimer += 1
-		if stateTimer>=400:
+		if stateTimer>=300:
 			stateTimer = 0
 			state = 'playing'
 		middleRect = middleText.get_rect(center = (screen_width/2,screen_height/2))
