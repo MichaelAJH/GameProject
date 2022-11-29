@@ -8,7 +8,7 @@ pygame.init()
 screen = pygame.display.set_mode((screen_width,screen_height))
 clock = pygame.time.Clock()
 level = Level(level_map,screen)
-sky = import_image('../graphics/background/background.png', (screen_width, screen_height))
+sky = import_image('ManjangGool\graphics\\background\\background.png', (screen_width, screen_height))
 
 while True:
 	for event in pygame.event.get():

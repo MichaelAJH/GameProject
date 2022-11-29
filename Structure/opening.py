@@ -20,11 +20,13 @@ ps_input = Input((900, 55), (520, 320), screen)
 signIn_button = Button((400, 120), (250, 420), screen, 'Sign In')
 logIn_button = Button((400, 120), (780, 420), screen, 'Log In')
 sprites1.add(id_input, ps_input, signIn_button, logIn_button)
+bgm = pygame.mixer.Sound('Structure\main_theme.wav')
 player_id, password = '', ''
 play = 'opening'
 
 def opening():
-    global jeju, font, title, titleRect, play, player_id, password, sprites1, id_input, ps_input, signIn_button, logIn_button
+    global jeju, font, title, titleRect, play, bgm, player_id, password, sprites1, id_input, ps_input, signIn_button, logIn_button
+    bgm.play()
     while play=='opening':
         mouse = pygame.mouse.get_pos()
         for event in pygame.event.get():
@@ -69,7 +71,7 @@ logOut_button = Button((400, 90), (520, 540), screen, 'Log Out')
 sprites2.add(newG_button, history_button, logOut_button)
 
 def logged_in():
-    global jeju, font, title, titleRect, play, sprites2, newG_button, history_button, logOut_button
+    global jeju, font, title, titleRect, play, bgm, sprites2, newG_button, history_button, logOut_button
     while play=='logged in':
         mouse = pygame.mouse.get_pos()
         for event in pygame.event.get():
@@ -95,20 +97,34 @@ def logged_in():
         pygame.display.flip()
 
 jeju_map = import_image('Structure\Images\\trace.png', (1040,640))
+ico_plane = import_image('Structure\Images\icon_plane.png', (100,100))
+ico_mjg = import_image('Structure\Images\icon_manjanggool.png', (80,80))
+ico_star = import_image('Structure\Images\icon_star.png', (80,80))
+ico_jsjl = import_image('Structure\Images\icon_jusangjullee.png', (80,80))
+ico_sgl = import_image('Structure\Images\icon_sagaeli.png', (80,80))
+paper = import_image('Structure\Images\paper.png', (300,350))
 sprites3 = pygame.sprite.Group()
-character_idle = Idle((250, 555), screen, (60,60))
-sprites3.add(character_idle)
+character = Idle((415, 165), screen, (60,60))
+sprites3.add(character)
 
 def levels(type = 'new'):
     global jeju_map, font, title, titleRect, play
+    describtion_mode = 'hide'   # hide, up, show, down
+    describtion_index = 0
     past, level = 0, 0
-    levels = [(250,555), (330,400), (420,444), (600,600)]
+    icons = [ico_plane, ico_mjg, ico_star, ico_jsjl, ico_sgl]
+    levels = [(415, 165), (770, 170), (725, 450), (415, 535), (240, 550)]
+    leveldic = {0:'plane', 1:'manjanggool', 2:'starclicker', 3:'joosangjuli', 4:'sagaeli'}
     moving = False
     while play == 'levels':
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                print(pygame.mouse.get_pos())
+                if character.clicked(pygame.mouse.get_pos()):
+                    character.mode = 'wriggle'
             if event.type == pygame.KEYDOWN:
                 if moving: pass
                 else:
@@ -120,12 +136,14 @@ def levels(type = 'new'):
                         past,level = level, (level+1)%len(levels)
 
         screen.blit(jeju_map, (0,0))
-        character_idle.animate(0.2)
+        for icon in icons:
+            screen.blit(icon, (levels[icons.index(icon)][0]-40,levels[icons.index(icon)][1]-80))
+        character.animate(0.2)
         if moving:
-            moving = character_idle.move(levels[past], levels[level])
+            moving = character.move(levels[past], levels[level])
         sprites3.draw(screen)
-        # screen.blit(character_idle.image, character_idle.rect.bottomright)
-        print(level, moving, character_idle.rect.bottomright)
+        # print(level, moving, character.rect.bottomright)
+        screen.blit(paper, (740,290))
         fpsClock.tick(FPS)
         pygame.display.flip()
 
