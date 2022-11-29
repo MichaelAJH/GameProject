@@ -6,7 +6,7 @@ class Player(pygame.sprite.Sprite):
 		super().__init__()
 		self.import_character_assets()
 		self.frame_index = 0
-		self.animation_speed = 0.15
+		self.animation_speed = 0.10
 		self.image = self.animations['idle'][self.frame_index]
 		self.image = pygame.transform.scale(self.image, (100,100))
 		self.rect = self.image.get_rect(topleft = pos)
@@ -33,7 +33,7 @@ class Player(pygame.sprite.Sprite):
 		self.on_right = False
 
 	def import_character_assets(self):
-		character_path = 'ManjangGool\graphics\character\\'
+		character_path = 'ManjangGool/Image/character/'
 		self.animations = {'idle':[],'run':[],'jump':[],'fall':[]}
 
 		for animation in self.animations.keys():
@@ -41,7 +41,7 @@ class Player(pygame.sprite.Sprite):
 			self.animations[animation] = import_folder(full_path)
 
 	def import_dust_run_particles(self):
-		self.dust_run_particles = import_folder('ManjangGool/graphics/character/dust_particles/run')
+		self.dust_run_particles = import_folder('ManjangGool/Image/character/dust_particles/run')
 
 	def animate(self):
 		animation = self.animations[self.status]

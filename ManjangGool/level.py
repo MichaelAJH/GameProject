@@ -21,6 +21,8 @@ class Level:
 		# lava
 		self.lava_sprite = pygame.sprite.GroupSingle()
 		self.lava_sprite.add(Lava((0,screen_height)))
+  
+		self.process=0
 
 	def create_jump_particles(self,pos):
 		if self.player.sprite.facing_right:
@@ -76,6 +78,8 @@ class Level:
 			self.world_shift = 0
 			player.speed = 6
 
+		self.process -= self.world_shift
+
 	def horizontal_movement_collision(self):
 		player = self.player.sprite
 		player.rect.x += player.direction.x * player.speed
@@ -116,16 +120,31 @@ class Level:
 		if player.on_ceiling and player.direction.y > 0.1:
 			player.on_ceiling = False
 
-	def run(self, time):
-		
-  
+	def run(self, state=False):
+		if	state=='ready':
+			self.player.sprite.animate()
+			self.horizontal_movement_collision()
+			self.get_player_on_ground()
+			self.vertical_movement_collision()
+			self.player.draw(self.display_surface)
+			self.tiles.draw(self.display_surface)
+			self.lava_sprite.update()
+			self.lava_sprite.draw(self.display_surface)
+			return
+
+		if state=='fail':
+			self.tiles.draw(self.display_surface)
+			self.lava_sprite.update()
+			self.lava_sprite.draw(self.display_surface)
+			return
+   
 		# dust particles 
 		self.dust_sprite.update(self.world_shift)
 		self.dust_sprite.draw(self.display_surface)
 		
 
 		# level tiles
-		self.tiles.update(self.world_shift, time)
+		self.tiles.update(self.world_shift)
 		self.tiles.draw(self.display_surface)
 		self.scroll_x()
 
