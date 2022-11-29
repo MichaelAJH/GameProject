@@ -21,6 +21,9 @@ bar = import_image('Plane\Images\process_bar.png', (640,10))
 icon = import_image('Plane\Images\plane.png', (50,25), 25)
 
 while True:
+    if process > 1230:
+        print('success')
+        break
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -42,6 +45,7 @@ while True:
         bird.animate(0.5)
         bird.update()
         if collide(plane, bird):
+            print(process/1230*100)
             pygame.quit()
             sys.exit()
     for cloud in clouds.values():

@@ -3,7 +3,7 @@ from support import import_image
 
 jeju = import_image('Structure\Images\시작화면 배경.jpg', (1040,640))
 
-def scprint(text, screen, pos=(520,580), background=jeju, fontsize=22, font='freesansbold.ttf'):
+def scprint(text, screen, pos=(520,540), background=jeju, fontsize=22, font='freesansbold.ttf'):
     screen.blit(background, (0,0))
     Font = pygame.font.Font(font, fontsize)
     Text = Font.render(text, True, 'red', 'white')

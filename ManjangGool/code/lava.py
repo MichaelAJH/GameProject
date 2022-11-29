@@ -13,7 +13,7 @@ class Lava(pygame.sprite.Sprite):
 		self.rect = self.image.get_rect(bottomleft = pos)
 
 	def import_lava_assets(self):
-		lava_path = '../graphics/background/lava'
+		lava_path = 'ManjangGool\graphics\\background\lava'
 		self.animation = import_folder(lava_path)
 
 	def animate(self):
