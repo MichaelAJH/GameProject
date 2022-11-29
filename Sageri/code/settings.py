@@ -14,8 +14,8 @@ level_map1 = [
 
 level_map = [
 '               ',
-'  P ',
-' XX   ']
+' P ',
+' X   ']
 
 
 tile_size = 260

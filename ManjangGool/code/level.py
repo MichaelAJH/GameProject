@@ -60,18 +60,6 @@ class Level:
 				if cell == 'P':
 					player_sprite = Player((x,y),self.display_surface,self.create_jump_particles)
 					self.player.add(player_sprite)
-     
-	def reload_level(self,layout):
-		self.tiles = pygame.sprite.Group()
-
-		for row_index,row in enumerate(layout):
-			for col_index,cell in enumerate(row):
-				x = col_index * tile_size
-				y = row_index * tile_size
-				
-				if cell == 'X':
-					tile = Tile((x,y),tile_size)
-					self.tiles.add(tile)
 
 	def scroll_x(self):
 		player = self.player.sprite
@@ -79,14 +67,14 @@ class Level:
 		direction_x = player.direction.x
 
 		if player_x < screen_width / 4 and direction_x < 0:
-			self.world_shift = 8
+			self.world_shift = 6
 			player.speed = 0
 		elif player_x > screen_width - (screen_width / 4) and direction_x > 0:
-			self.world_shift = -8
+			self.world_shift = -6
 			player.speed = 0
 		else:
 			self.world_shift = 0
-			player.speed = 8
+			player.speed = 6
 
 	def horizontal_movement_collision(self):
 		player = self.player.sprite

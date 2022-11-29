@@ -15,9 +15,14 @@ while True:
 		if event.type == pygame.QUIT:
 			pygame.quit()
 			sys.exit()
+
+	if(level.player.sprite.rect.centery > screen_height+50):
+		pygame.quit()
+		sys.exit()
 	
 	screen.blit(sky, (0,0))
 	level.run(pygame.time.get_ticks())
+ 
 
 	pygame.display.update()
 	clock.tick(60)

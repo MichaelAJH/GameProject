@@ -8,13 +8,11 @@ from wave import Wave
 class Level:
 	def __init__(self,level_data,surface):
 		
-		# level setup
 		self.display_surface = surface 
 		self.setup_level(level_data)
 		self.world_shift = 0
 		self.current_x = 0
 
-		# dust 
 		self.dust_sprite = pygame.sprite.GroupSingle()
 		self.player_on_ground = False
 		self.player_absolute_speed = 0
@@ -63,14 +61,6 @@ class Level:
 		player_x = player.rect.centerx
 		direction_x = player.direction.x
   
-
-		# if player_x < screen_width / 4 and direction_x < 0:
-		# 	self.world_shift = -self.player_absolute_speed
-		# elif player_x > screen_width - (screen_width / 4) and direction_x > 0:
-		# 	self.world_shift = -self.player_absolute_speed
-		# else:
-		# 	self.world_shift = 0
-
 		self.player_absolute_speed += direction_x*0.6
   
 		if(self.player_absolute_speed>1): self.player_absolute_speed -= 0.02

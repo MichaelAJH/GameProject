@@ -7,7 +7,7 @@ class Lava(pygame.sprite.Sprite):
 		super().__init__()
 		self.import_lava_assets()
 		self.frame_index = 0
-		self.animation_speed = 0.15
+		self.animation_speed = 0.1
 		self.image = self.animation[self.frame_index]
 		self.image = pygame.transform.scale(self.image,(screen_width,30))
 		self.rect = self.image.get_rect(bottomleft = pos)
@@ -22,7 +22,7 @@ class Lava(pygame.sprite.Sprite):
 			self.frame_index = 0
 
 		self.image = self.animation[int(self.frame_index)]
-		self.image = pygame.transform.scale(self.image,(screen_width,100))
+		self.image = pygame.transform.scale(self.image,(screen_width,30))
 
 	def update(self):
 		self.animate()
